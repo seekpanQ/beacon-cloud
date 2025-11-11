@@ -3,6 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>beacon-api</module>
+        <module>beacon-cache</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
