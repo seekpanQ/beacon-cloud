@@ -1,7 +1,7 @@
 package com.mashibing.api.filter.impl;
 
 import com.mashibing.api.filter.CheckFilter;
-import com.mashibing.common.StandardSubmit;
+import com.mashibing.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

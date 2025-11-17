@@ -1,6 +1,6 @@
 package com.mashibing.api.filter;
 
-import com.mashibing.common.StandardSubmit;
+import com.mashibing.common.model.StandardSubmit;
 
 /**
  * 做策略模式的父接口

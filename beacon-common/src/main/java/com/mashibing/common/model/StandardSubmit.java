@@ -1,4 +1,4 @@
-package com.mashibing.common;
+package com.mashibing.common.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

@@ -1,6 +1,6 @@
 package com.mashibing.api.filter;
 
-import com.mashibing.common.StandardSubmit;
+import com.mashibing.common.model.StandardSubmit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
