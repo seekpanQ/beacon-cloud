@@ -6,6 +6,7 @@ import com.mashibing.api.vo.ResultVO;
 import com.mashibing.common.enums.ExceptionEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/sms")
 @Slf4j
+@RefreshScope
 public class SmsController {
     /**
      * 基于请求头获取信息时，可能获取到的未知信息
