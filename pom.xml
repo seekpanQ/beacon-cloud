@@ -5,6 +5,7 @@
         <module>beacon-api</module>
         <module>beacon-cache</module>
         <module>beacon-common</module>
+        <module>beacon-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
