@@ -4,6 +4,7 @@ import com.mashibing.api.form.SingleSendForm;
 import com.mashibing.api.utils.R;
 import com.mashibing.api.vo.ResultVO;
 import com.mashibing.common.enums.ExceptionEnums;
+import com.mashibing.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -53,7 +54,17 @@ public class SmsController {
         }
         //=========================获取真实的IP地址=========================================
         String ip = this.getRealIP(req);
-        System.out.println(ip);
+
+        //=========================构建StandardSubmit，各种封装校验=========================
+        StandardSubmit submit = new StandardSubmit();
+        submit.setRealIP(ip);
+        submit.setApikey(singleSendForm.getApikey());
+        submit.setMobile(singleSendForm.getMobile());
+        submit.setText(singleSendForm.getText());
+        submit.setState(singleSendForm.getState());
+        submit.setUid(singleSendForm.getUid());
+
+        //=========================发送到MQ，交给策略模块处理================================
         return R.ok();
     }
 
