@@ -6,6 +6,7 @@ import com.mashibing.api.utils.R;
 import com.mashibing.api.vo.ResultVO;
 import com.mashibing.common.enums.ExceptionEnums;
 import com.mashibing.common.model.StandardSubmit;
+import com.mashibing.common.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,8 @@ public class SmsController {
     private String headers;
     @Autowired
     private CheckFilterContext checkFilterContext;
+    @Autowired
+    private SnowFlakeUtil snowFlakeUtil;
 
     /**
      * @param singleSendForm
@@ -70,6 +73,9 @@ public class SmsController {
 
         //=========================调用策略模式的校验链=========================================
         checkFilterContext.check(submit);
+        //========================基于雪花算法生成唯一id，并添加到StandardSubmit对象中=============
+        submit.setSequenceId(snowFlakeUtil.nextId());
+        System.out.println(submit.getSequenceId());
 
         //=========================发送到MQ，交给策略模块处理================================
         return R.ok();
