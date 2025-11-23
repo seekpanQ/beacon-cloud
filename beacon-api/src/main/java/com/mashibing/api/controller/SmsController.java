@@ -1,11 +1,13 @@
 package com.mashibing.api.controller;
 
+import com.mashibing.api.filter.CheckFilterContext;
 import com.mashibing.api.form.SingleSendForm;
 import com.mashibing.api.utils.R;
 import com.mashibing.api.vo.ResultVO;
 import com.mashibing.common.enums.ExceptionEnums;
 import com.mashibing.common.model.StandardSubmit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.util.StringUtils;
@@ -36,6 +38,8 @@ public class SmsController {
      */
     @Value("${headers}")
     private String headers;
+    @Autowired
+    private CheckFilterContext checkFilterContext;
 
     /**
      * @param singleSendForm
@@ -63,6 +67,9 @@ public class SmsController {
         submit.setText(singleSendForm.getText());
         submit.setState(singleSendForm.getState());
         submit.setUid(singleSendForm.getUid());
+
+        //=========================调用策略模式的校验链=========================================
+        checkFilterContext.check(submit);
 
         //=========================发送到MQ，交给策略模块处理================================
         return R.ok();
