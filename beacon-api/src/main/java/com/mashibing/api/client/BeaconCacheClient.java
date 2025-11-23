@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * beacon-cache模块client
@@ -20,5 +21,8 @@ public interface BeaconCacheClient {
 
     @GetMapping("/cache/hget/{key}/{field}")
     String hgetString(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field);
+
+    @GetMapping("/cache/smembers/{key}")
+    Set smembers(@PathVariable(value = "key") String key);
 
 }
