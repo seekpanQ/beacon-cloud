@@ -15,13 +15,16 @@ spring:
         server-addr: 192.168.91.130:8848
         file-extension: yml
         # beacon-api-dev.yml
-#nacos配置中心的配置
+  #nacos配置中心的配置
 #  rabbitmq:
 #    host: 192.168.91.130
 #    port: 5672
 #    username: root
 #    password: 123456
 #    virtual-host: /
+#    # 开启confirm机制&return机制
+#    publisher-confirm-type: correlated
+#    publisher-returns: true
 #
 #server:
 #  port: 10001

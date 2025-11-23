@@ -4,10 +4,13 @@ import com.mashibing.api.filter.CheckFilterContext;
 import com.mashibing.api.form.SingleSendForm;
 import com.mashibing.api.utils.R;
 import com.mashibing.api.vo.ResultVO;
+import com.mashibing.common.constant.RabbitMQConstants;
 import com.mashibing.common.enums.ExceptionEnums;
 import com.mashibing.common.model.StandardSubmit;
 import com.mashibing.common.util.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -43,6 +46,8 @@ public class SmsController {
     private CheckFilterContext checkFilterContext;
     @Autowired
     private SnowFlakeUtil snowFlakeUtil;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * @param singleSendForm
@@ -78,6 +83,8 @@ public class SmsController {
         System.out.println(submit.getSequenceId());
 
         //=========================发送到MQ，交给策略模块处理================================
+        rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_PRE_SEND,
+                submit, new CorrelationData(submit.getSequenceId().toString()));
         return R.ok();
     }
 
