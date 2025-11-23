@@ -31,6 +31,10 @@ public class SignCheckFilter implements CheckFilter {
      * 客户存储签名信息的字段
      */
     private final String CLIENT_SIGN_INFO = "signInfo";
+    /**
+     * 签名的id
+     */
+    private final String SIGN_ID = "id";
     @Autowired
     private BeaconCacheClient cacheClient;
 
@@ -59,6 +63,9 @@ public class SignCheckFilter implements CheckFilter {
         //4. 判断~
         for (Map map : set) {
             if (sign.equals(map.get(CLIENT_SIGN_INFO))) {
+                // 走到这，说明匹配上了具体的签名信息
+                submit.setSign(sign);
+                submit.setSignId(Long.parseLong(map.get(SIGN_ID) + ""));
                 log.info("【接口模块-校验签名】   找到匹配的签名 sign = {}", sign);
                 return;
             }
