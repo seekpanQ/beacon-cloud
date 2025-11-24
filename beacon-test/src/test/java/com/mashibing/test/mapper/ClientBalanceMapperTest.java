@@ -26,6 +26,9 @@ public class ClientBalanceMapperTest {
     public void findByClientId() throws JsonProcessingException {
 
         ClientBalance clientBalance = mapper.findByClientId(1L);
+
+
+
         System.out.println(clientBalance);
         ObjectMapper objectMapper = new ObjectMapper();
         Map map = objectMapper.readValue(objectMapper.writeValueAsString(clientBalance), Map.class);
