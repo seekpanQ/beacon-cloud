@@ -73,4 +73,10 @@ public class CacheController {
         log.info("【缓存模块】 get方法，获取key ={} 的数据 value = {}", key, value);
         return value;
     }
+
+    @PostMapping("/cache/saddstr/{key}")
+    public void saddStr(@PathVariable(value = "key") String key, @RequestBody String... value) {
+        log.info("【缓存模块】 saddStr方法，存储key = {}，存储value = {}", key, value);
+        redisClient.sAdd(key, value);
+    }
 }
