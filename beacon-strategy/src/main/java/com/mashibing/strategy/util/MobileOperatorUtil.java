@@ -1,4 +1,4 @@
-package com.mashibing.strategy.utils;
+package com.mashibing.strategy.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
