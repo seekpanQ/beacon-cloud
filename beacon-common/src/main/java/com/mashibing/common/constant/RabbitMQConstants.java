@@ -17,4 +17,9 @@ public interface RabbitMQConstants {
      * 写日志到Elasticsearch的队列
      */
     String SMS_WRITE_LOG = "sms_write_log_topic";
+
+    /**
+     * 状态报告推送的队列
+     */
+    String SMS_PUSH_REPORT = "sms_push_report_topic";
 }

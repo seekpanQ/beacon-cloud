@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class DirtyWordHutoolDFAStrategyFilter implements StrategyFilter {
     @Autowired
-    private ErrorSendMsgUtil errorSendMsgUtil;
+    private ErrorSendMsgUtil sendMsgUtil;
 
     @Override
     public void strategy(StandardSubmit submit) {
@@ -33,7 +33,10 @@ public class DirtyWordHutoolDFAStrategyFilter implements StrategyFilter {
             log.info("【策略模块-敏感词校验】   短信内容包含敏感词信息， dirtyWords = {}", dirtyWords);
             // ================================发送写日志================================
             submit.setErrorMsg(ExceptionEnums.HAVE_DIRTY_WORD.getMsg() + "dirtyWords = " + dirtyWords.toString());
-            errorSendMsgUtil.sendWriteLog(submit);
+            sendMsgUtil.sendWriteLog(submit);
+
+            // ================================发送状态报告的消息前，需要将report对象数据封装================================
+            sendMsgUtil.sendPushReport(submit);
 
             // ================================抛出异常================================
             throw new StrategyException(ExceptionEnums.HAVE_DIRTY_WORD);
