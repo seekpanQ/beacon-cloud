@@ -1,9 +1,12 @@
 package com.mashibing.strategy.filter.impl;
 
 import com.mashibing.common.constant.CacheConstant;
+import com.mashibing.common.enums.ExceptionEnums;
+import com.mashibing.common.exception.StrategyException;
 import com.mashibing.common.model.StandardSubmit;
 import com.mashibing.strategy.client.BeaconCacheClient;
 import com.mashibing.strategy.filter.StrategyFilter;
+import com.mashibing.strategy.util.ErrorSendMsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,8 @@ import java.util.UUID;
 public class DirtyWordStrategyFilter implements StrategyFilter {
     @Autowired
     private BeaconCacheClient cacheClient;
+    @Autowired
+    private ErrorSendMsgUtil errorSendMsgUtil;
 
     @Override
     public void strategy(StandardSubmit submit) {
@@ -55,7 +60,11 @@ public class DirtyWordStrategyFilter implements StrategyFilter {
         if (dirtyWords != null && dirtyWords.size() > 0) {
             //5、 如果有敏感词，抛出异常 / 其他操作。。
             log.info("【策略模块-敏感词校验】   短信内容包含敏感词信息， dirtyWords = {}", dirtyWords);
-            // 还需要做其他处理
+            // ================================发送写日志================================
+            submit.setErrorMsg(ExceptionEnums.HAVE_DIRTY_WORD.getMsg() + "dirtyWords = " + dirtyWords.toString());
+            errorSendMsgUtil.sendWriteLog(submit);
+            // ================================抛出异常================================
+            throw new StrategyException(ExceptionEnums.HAVE_DIRTY_WORD);
         }
     }
 }

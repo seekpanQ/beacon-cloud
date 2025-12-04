@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 
 @RestController
@@ -80,7 +81,7 @@ public class SmsController {
         checkFilterContext.check(submit);
         //========================基于雪花算法生成唯一id，并添加到StandardSubmit对象中=============
         submit.setSequenceId(snowFlakeUtil.nextId());
-        System.out.println(submit.getSequenceId());
+        submit.setSendTime(LocalDateTime.now());
 
         //=========================发送到MQ，交给策略模块处理================================
         rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_PRE_SEND,
