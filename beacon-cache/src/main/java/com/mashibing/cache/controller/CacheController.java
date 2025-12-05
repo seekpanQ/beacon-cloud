@@ -24,7 +24,7 @@ public class CacheController {
     }
 
     @PostMapping(value = "/cache/set/{key}")
-    public void set(@PathVariable(value = "key") String key, @RequestParam(value = "value") String value) {
+    public void set(@PathVariable(value = "key") String key, @RequestParam(value = "value") Object value) {
         log.info("【缓存模块】 set方法，存储key = {}，存储value = {}", key, value);
         redisClient.set(key, value);
     }
