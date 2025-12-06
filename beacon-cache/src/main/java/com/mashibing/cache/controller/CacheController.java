@@ -126,4 +126,15 @@ public class CacheController {
         log.info("【缓存模块】 zRemove方法，删除key = {},member = {}", key, member);
         redisClient.zRemove(key, member);
     }
+
+    @PostMapping(value = "/cache/hincrby/{key}/{field}/{delta}")
+    public Long hIncrBy(@PathVariable(value = "key") String key,
+                        @PathVariable(value = "field") String field,
+                        @PathVariable(value = "delta") Long delta) {
+        log.info("【缓存模块】 hIncrBy方法，自增   key = {},field = {}，number = {}", key, field, delta);
+        Long result = redisClient.incrementMap(key, field, delta);
+        log.info("【缓存模块】 hIncrBy方法，自增   key = {},field = {}，number = {},剩余数值为 = {}", key, field, delta, result);
+        return result;
+
+    }
 }
