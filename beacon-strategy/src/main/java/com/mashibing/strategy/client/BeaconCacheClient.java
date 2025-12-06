@@ -36,5 +36,5 @@ public interface BeaconCacheClient {
                            @PathVariable(value = "end") Double end);
 
     @DeleteMapping(value = "/cache/zremove/{key}/{member}")
-    void zRemove(@PathVariable(value = "key") String key, @PathVariable(value = "member") String member);
+    void zRemove(@PathVariable(value = "key") String key, @PathVariable(value = "member") Long member);
 }

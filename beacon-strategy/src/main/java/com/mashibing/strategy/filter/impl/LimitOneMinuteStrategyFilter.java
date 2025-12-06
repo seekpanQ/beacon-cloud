@@ -1,6 +1,7 @@
 package com.mashibing.strategy.filter.impl;
 
 import com.mashibing.common.constant.CacheConstant;
+import com.mashibing.common.constant.SmsConstant;
 import com.mashibing.common.enums.ExceptionEnums;
 import com.mashibing.common.exception.StrategyException;
 import com.mashibing.common.model.StandardSubmit;
@@ -29,6 +30,9 @@ public class LimitOneMinuteStrategyFilter implements StrategyFilter {
 
     @Override
     public void strategy(StandardSubmit submit) {
+        if (submit.getState() != SmsConstant.CODE_TYPE) {
+            return;
+        }
         //1、基于submit获取短信的发送时间
         LocalDateTime sendTime = submit.getSendTime();
 
@@ -61,7 +65,7 @@ public class LimitOneMinuteStrategyFilter implements StrategyFilter {
         if (count > 1) {
             // 一分钟之前，发送过短信，限流规则生效
             log.info("【策略模块-一分钟限流策略】  插入失败！ 满足一分钟限流规则，无法发送！");
-            cacheClient.zRemove(key, sendTimeMilli + "");
+            cacheClient.zRemove(key, sendTimeMilli);
             submit.setErrorMsg(ExceptionEnums.ONE_MINUTE_LIMIT + ",mobile = " + mobile);
             sendMsgUtil.sendWriteLog(submit);
             sendMsgUtil.sendPushReport(submit);
