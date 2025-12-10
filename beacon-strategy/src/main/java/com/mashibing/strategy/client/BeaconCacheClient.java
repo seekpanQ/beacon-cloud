@@ -3,6 +3,7 @@ package com.mashibing.strategy.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 
 @FeignClient(value = "beacon-cache")
@@ -21,6 +22,9 @@ public interface BeaconCacheClient {
 
     @GetMapping("/cache/smembers/{key}")
     Set<String> smembers(@PathVariable(value = "key") String key);
+
+    @GetMapping("/cache/smembers/{key}")
+    Set<Map> smemberMap(@PathVariable(value = "key") String key);
 
     @GetMapping("/cache/hget/{key}/{field}")
     Integer hgetInteger(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field);
@@ -42,4 +46,7 @@ public interface BeaconCacheClient {
     Long hIncrBy(@PathVariable(value = "key") String key,
                  @PathVariable(value = "field") String field,
                  @PathVariable(value = "delta") Long delta);
+
+    @GetMapping("/cache/hgetall/{key}")
+    Map hGetAll(@PathVariable(value = "key") String key);
 }

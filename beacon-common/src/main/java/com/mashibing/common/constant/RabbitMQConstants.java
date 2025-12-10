@@ -22,4 +22,8 @@ public interface RabbitMQConstants {
      * 状态报告推送的队列
      */
     String SMS_PUSH_REPORT = "sms_push_report_topic";
+    /**
+     * 策略模块推送消息到短信网关模块的队列前缀名称，后面需要追加通道的id
+     */
+    String SMS_GATEWAY = "sms_gateway_topic_";
 }
