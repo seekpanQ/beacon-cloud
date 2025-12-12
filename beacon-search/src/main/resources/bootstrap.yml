@@ -28,3 +28,7 @@ spring:
 #        acknowledge-mode: manual
 #server:
 #  port: 10101
+# Elasicsearch的连接信息
+#elasticsearch:
+#  # Elasicsearch的ip和port，多个用‘,’隔间。
+#  hostAndPorts: 192.168.91.130:9200,192.168.91.130:9200
