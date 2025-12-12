@@ -32,3 +32,5 @@ spring:
 #elasticsearch:
 #  # Elasicsearch的ip和port，多个用‘,’隔间。
 #  hostAndPorts: 192.168.91.130:9200,192.168.91.130:9200
+#  username: elastic
+#  password: 123456!
