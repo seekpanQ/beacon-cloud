@@ -16,15 +16,15 @@ spring:
         file-extension: yml
         # beacon-cache-dev.yml
   #nacos配置中心的配置
-  rabbitmq:
-    host: 192.168.91.130
-    port: 5672
-    username: root
-    password: 123456
-    virtual-host: /
-    listener:
-      simple:
-        # 开启手动ack
-        acknowledge-mode: manual
-server:
-  port: 10201
+#  rabbitmq:
+#    host: 192.168.91.130
+#    port: 5672
+#    username: root
+#    password: 123456
+#    virtual-host: /
+#    listener:
+#      simple:
+#        # 开启手动ack
+#        acknowledge-mode: manual
+#server:
+#  port: 10201
