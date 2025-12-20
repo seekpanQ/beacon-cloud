@@ -10,7 +10,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Bean
+    /**
+     * 配置类的方式修改RabbitMQ消费的方式
+     *
+     * @param connectionFactory
+     * @param configurer
+     * @return
+     */
+//    @Bean
     public SimpleRabbitListenerContainerFactory gatewayContainerFactory(
             ConnectionFactory connectionFactory,
             SimpleRabbitListenerContainerFactoryConfigurer configurer) {

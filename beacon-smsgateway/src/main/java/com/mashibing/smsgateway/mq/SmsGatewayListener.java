@@ -12,7 +12,7 @@ import java.io.IOException;
 @Slf4j
 public class SmsGatewayListener {
 
-    @RabbitListener(queues = "${gateway.sendtopic}", containerFactory = "gatewayContainerFactory")
+    @RabbitListener(queues = "${gateway.sendtopic}")
     public void consume(String submit, Channel channel, Message message) throws IOException {
         log.info("【短信网关模块】 接收到消息 submit = {}", submit);
         // =====================完成运营商交互，发送一次请求，接收两次响应==========================
