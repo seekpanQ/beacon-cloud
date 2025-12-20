@@ -26,5 +26,9 @@ spring:
 #      simple:
 #        # 开启手动ack
 #        acknowledge-mode: manual
+#        concurrency: 10 # 消费者中并行的线程数
+#        prefetch: 50    # 每个线程一次性最多拉取的消息个数,默认是250
 #server:
 #  port: 10086
+#gateway:
+#  sendtopic: test
