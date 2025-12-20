@@ -31,4 +31,4 @@ spring:
 #server:
 #  port: 10086
 #gateway:
-#  sendtopic: test
+#  sendtopic: sms_gateway_topic_21
