@@ -4,6 +4,7 @@ package com.mashibing.smsgateway.netty4;
 import com.mashibing.smsgateway.netty4.entity.CmppDeliver;
 import com.mashibing.smsgateway.netty4.entity.CmppSubmitResp;
 import com.mashibing.smsgateway.netty4.utils.MsgUtils;
+import com.mashibing.smsgateway.runnable.DeliverRunnable;
 import com.mashibing.smsgateway.runnable.SubmitRepoRunnable;
 import com.mashibing.smsgateway.util.SpringUtil;
 import io.netty.channel.ChannelHandlerContext;
@@ -43,6 +44,9 @@ public class CMPPHandler extends SimpleChannelInboundHandler {
                 log.info("----第二次响应：" + resp.getMsg_Id_DELIVRD());
                 log.info("----手机号：" + resp.getDest_terminal_Id());
                 log.info("----状态：" + resp.getStat());
+                // 提前获取一手~~~
+                ThreadPoolExecutor cmppDeliverPool = (ThreadPoolExecutor) SpringUtil.getBeanByName("cmppDeliverPool");
+                cmppDeliverPool.execute(new DeliverRunnable(resp.getMsg_Id_DELIVRD(), resp.getStat()));
             } else {
                 //用户回复会打印在这里
                 log.info("" + MsgUtils.bytesToLong(resp.getMsg_Id()));

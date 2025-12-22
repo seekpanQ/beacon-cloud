@@ -55,6 +55,11 @@
             <artifactId>hippo4j-spring-boot-starter</artifactId>
             <version>1.5.0</version>
         </dependency>
+        <!--        OpenFeign调用缓存-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

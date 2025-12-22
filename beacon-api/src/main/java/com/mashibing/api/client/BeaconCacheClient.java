@@ -20,7 +20,7 @@ public interface BeaconCacheClient {
     Object hget(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field);
 
     @GetMapping("/cache/hget/{key}/{field}")
-    String hgetString(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field);
+    Object hgetString(@PathVariable(value = "key") String key, @PathVariable(value = "field") String field);
 
     @GetMapping("/cache/smembers/{key}")
     Set smembers(@PathVariable(value = "key") String key);

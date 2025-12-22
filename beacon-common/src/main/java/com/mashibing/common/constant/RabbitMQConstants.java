@@ -26,4 +26,12 @@ public interface RabbitMQConstants {
      * 策略模块推送消息到短信网关模块的队列前缀名称，后面需要追加通道的id
      */
     String SMS_GATEWAY = "sms_gateway_topic_";
+
+    /**
+     * 短信网关模块涉及到的私信队列需要的信息
+     */
+    String SMS_GATEWAY_NORMAL_EXCHANGE = "sms_gateway_normal_exchange";
+    String SMS_GATEWAY_NORMAL_QUEUE = "sms_gateway_normal_queue";
+    String SMS_GATEWAY_DEAD_EXCHANGE = "sms_gateway_dead_exchange";
+    String SMS_GATEWAY_DEAD_QUEUE = "sms_gateway_dead_queue";
 }
