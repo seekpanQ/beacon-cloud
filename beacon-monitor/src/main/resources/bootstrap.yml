@@ -15,7 +15,27 @@ spring:
         server-addr: 192.168.91.130:8848
         file-extension: yml
         # beacon-monitor-dev.yml
+  #  rabbitmq:
+  #    host: 192.168.91.130
+  #    port: 5672
+  #    username: root
+  #    password: 123456
+  #    virtual-host: /
+  #    listener:
+  #      simple:
+  #        # 开启手动ack
+  #        acknowledge-mode: manual
+  #        concurrency: 10 # 消费者中并行的线程数
+  #        prefetch: 50    # 每个线程一次性最多拉取的消息个数,默认是250
   #nacos配置中心的配置
+  mail:
+#    # 比如：使用163邮箱服务(也可以其他服务)
+#    host: smtp.163.com
+#    #发送方的邮箱
+#    username: lixin_qiu@163.com
+#    tos: 1059040909@qq.com
+#    # 设置密码，该处的密码是发送方QQ邮箱开启SMTP的授权码而非QQ密码
+#    password: ZRbrR5WWFGnKvEGW
 # xxl-job的基本配置
 #xxl:
 #  job:
@@ -39,3 +59,4 @@ spring:
 #      logretentiondays: 30
 #server:
 #  port: 18888
+
