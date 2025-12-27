@@ -2,6 +2,8 @@ package com.mashibing.webmaster.controller;
 
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.mashibing.common.constant.WebMasterConstants;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,9 @@ public class KaptchaController {
 
         //3、生成验证码文字
         String text = kaptcha.createText();
+
+        // 认证需要验证验证码的准确性，基于Shiro将text做存储
+        SecurityUtils.getSubject().getSession().setAttribute(WebMasterConstants.KAPTCHA, text);
 
         //4、基于文字生成对应的图片
         BufferedImage image = kaptcha.createImage(text);

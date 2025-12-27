@@ -1,0 +1,23 @@
+package com.mashibing.common.vo;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * 响应前端数据的基本结构
+ */
+@Data
+@NoArgsConstructor
+public class ResultVO {
+
+    private Integer code;
+    private String msg;
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
+    private Object data;
+
+    public ResultVO(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+}
