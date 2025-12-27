@@ -36,6 +36,8 @@ public class ShiroConfig {
         //2、配置上过滤器链
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // anon代表放行，使用的是AnonymousFilter
+        filterChainDefinitionMap.put("/public/**", "anon");
+        filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/sys/user/login", "anon");
         filterChainDefinitionMap.put("/index.html", "anon");
         filterChainDefinitionMap.put("/login.html", "anon");
