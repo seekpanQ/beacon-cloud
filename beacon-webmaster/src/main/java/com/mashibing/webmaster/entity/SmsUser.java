@@ -142,4 +142,24 @@ public class SmsUser {
     public void setExtend4(String extend4) {
         this.extend4 = extend4 == null ? null : extend4.trim();
     }
+
+    @Override
+    public String toString() {
+        return "SmsUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", created=" + created +
+                ", createId=" + createId +
+                ", updated=" + updated +
+                ", updateId=" + updateId +
+                ", isDelete=" + isDelete +
+                ", extend1='" + extend1 + '\'' +
+                ", extend2='" + extend2 + '\'' +
+                ", extend3='" + extend3 + '\'' +
+                ", extend4='" + extend4 + '\'' +
+                '}';
+    }
 }
