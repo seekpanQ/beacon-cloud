@@ -3,6 +3,13 @@ spring:
   # 服务名称
   application:
     name: beacon-webmaster
+  # MyBatis和dataSource配置
+  datasource:
+    driver-class-name: org.gjt.mm.mysql.Driver
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.91.130:3306/beacon_cloud?characterEncoding=utf-8&useSSL=false
   # 多环境
   profiles:
     active: dev
@@ -23,3 +30,9 @@ shiro:
   loginUrl: /login.html
   # 没有权限的页面
   unauthorizedUrl: unauthorized.html
+
+# MyBatis
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml

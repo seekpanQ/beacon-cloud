@@ -8,7 +8,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>beacon-smsgateway</artifactId>
-    <name>短信网关模块的模板</name>
 
     <dependencies>
         <!--start-web-->
